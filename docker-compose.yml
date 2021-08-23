@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: docker/php
+    container_name: app
+    working_dir: /var/www
+    networks:
+      - backend
+    volumes:
+      - .:/var/www
+      - ./docker/php/config/ini/:/usr/local/etc/php/conf.d/
+    ports:
+      - "80:8080"
+    tty: true
+
+  redis:
+    image: redis:6.2.5
+    container_name: redis
+    networks:
+      - backend
+    ports:
+      - "6379:6379"
+
+networks:
+  backend:
+    driver: bridge

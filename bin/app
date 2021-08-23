@@ -1,0 +1,7 @@
+#!/bin/bash
+
+PHP_CONTAINER=app
+TTY_DEVICE=$(tty)
+ARG="${@:1}"
+
+docker-compose exec ${PHP_CONTAINER} php ./app/public/index.php \n

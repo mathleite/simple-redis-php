@@ -1,0 +1,11 @@
+#!/bin/bash
+
+PHP_CONTAINER=app
+TTY_DEVICE=$(tty)
+ARG="${@:1}"
+
+if [ "$TTY_DEVICE" == "not a tty" ] ; then
+    docker exec ${PHP_CONTAINER} ${ARG}
+else
+    docker exec -it ${PHP_CONTAINER} ${ARG}
+fi
